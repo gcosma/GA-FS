@@ -1,3 +1,11 @@
+% Genetic Algorithm by Sadegh Salesi and Georgina Cosma      %
+% Programmed by Sadegh Salesi at Nottignham Trent University              %
+% Last revised:  2017     %
+% Reference: S. Salesi and G. Cosma, A novel extended binary cuckoo search algorithm for feature selection, 2017 2nd International Conference on Knowledge Engineering and Applications (ICKEA), London, 2017, pp. 6-12.
+% https://ieeexplore.ieee.org/document/8169893
+% Copyright (c) 2017, Sadegh Salesi and Georgina Cosma. All rights reserved.
+% -----------------------------------------------------------------
+
 clc
 clear
 close all
@@ -56,28 +64,18 @@ end
 [value,index]=min([pop.fit]);
 gpop=pop(index);
 
-
-
-
-
-
 %% main loop algorithm
 
 BEST=zeros(maxiter,1);
-
 tic
-
 for iter=1:maxiter
-
    % crossover
    crosspop=repmat(emp,ncross,1);
    crosspop=crossover(crosspop,pop,nvar,X,Y,ncross);
-   
-   
+  
    % mutation
    mutpop=repmat(emp,nmut,1);   
    mutpop=mutation(mutpop,pop,nvar,X,Y,nmut,popsize);
-   
    
    [pop]=[pop;crosspop;mutpop]; 
    [value,index]=sort([pop.fit]); 
@@ -99,14 +97,10 @@ save(nrun,3)=toc;
 
 end
 
-
 %% results algorithm
-
-
 %disp([ ' Best Solution = '  num2str(find(gpop.var==1))])
 %disp([ ' Best Fitness = '  num2str(gpop.fit)])
 %disp([ ' Time = '  num2str(toc)])
-
 
 % figure(1)
 % plot(BEST,'r')
@@ -114,18 +108,4 @@ end
 % ylabel('Fitness')
 % legend('BEST')
 % title('GA')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
